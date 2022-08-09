@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ThemeContext = createContext<ITheme>();
 
-const ThemeProvider = ({ children }: any) => {
+const ThemeProvide = ({ children }: any) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [isLoadingTheme, setIsLoadingTheme] = useState(true);
 
@@ -36,7 +36,7 @@ const ThemeProvider = ({ children }: any) => {
 
 export const useTheme = () => useContext(ThemeContext);
 
-export default ThemeProvider;
+export default ThemeProvide;
 
 const styles = StyleSheet.create({});
 

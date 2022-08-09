@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View,FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View,FlatList, ScrollView,ToastAndroid } from 'react-native'
 import React from 'react';
 import { Button,TextInput } from 'react-native-paper';
 import { useState,useEffect } from 'react';
 import { WordProps } from '../Utilis/types';
-import { useTheme } from '../Context/ThemeProvider';
+// import { useTheme } from '../Context/ThemeProvider';
 import axios from 'axios';
   
 
@@ -13,7 +13,7 @@ const Home : React.FC= ({navigation}:any) => {
     const [randomWord,setRandomWord] = useState<WordProps>();
      const[showState,setShowState] =useState<any>(true)
 
-     //const { theme, isLoadingTheme, updateTheme } = useTheme();
+    //   const { theme, isLoadingTheme, updateTheme } = useTheme();
 
      
    
@@ -41,7 +41,7 @@ const Home : React.FC= ({navigation}:any) => {
  
 
 
-//   const changeTheme = () => updateTheme(theme.themeMode);
+//  const changeTheme = () => updateTheme(theme.themeMode);
 
 //   if (isLoadingTheme) return null;
 
@@ -96,14 +96,23 @@ const Home : React.FC= ({navigation}:any) => {
 
   return (
 
+      <>
+     <View style ={styles.container}>
     
+    {/* <Button
+    mode='contained'
+    style = {styles.themeButton}
+   >ChangeTheme</Button>
+    */}
     
-    
-    <View style ={styles.container}>
+    {/* <TouchableOpacity onPress={changeTheme} style={styles.themeButton}>
+        <Text style={styles.text}>Switch Theme</Text>
+      </TouchableOpacity> */}
 
 
-
-
+      {/* <View
+        style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+      > */}
           <View style={styles.design}>
            <TextInput
             style={styles.input}
@@ -115,11 +124,16 @@ const Home : React.FC= ({navigation}:any) => {
             mode='contained'
             style = {styles.button}
             uppercase = {false}
+            disabled = {!newWord}
             onPress ={getNewWordApi}
              >
             Search</Button> 
             </View>
-     
+            {error &&
+            ToastAndroid.show("please enter a meaningful word", ToastAndroid.SHORT)
+            // Alert.alert("Incorrect Word",'please enter a meaningful word')
+            // <Text style={styles.wordText}>Please enter a meaningword</Text>
+            }
     {showState && <View style={styles.randomList}>
                 
     
@@ -144,9 +158,9 @@ const Home : React.FC= ({navigation}:any) => {
                                 onPress={handleSubmit}>
                                 <Text style ={styles.wordText}> Word : {item?.item?.word}</Text>
                                 <Text style ={styles.defText}> Definition : {item?.item?.meanings[0]?.definitions[0].definition}</Text>
-                                
                                 </TouchableOpacity>
                                 </View>
+                                
                                
                             </View>
                         )
@@ -160,7 +174,7 @@ const Home : React.FC= ({navigation}:any) => {
            
         </View>   
        
-
+        </>
        )
 }
 
@@ -206,6 +220,19 @@ const styles = StyleSheet.create({
         justifyContent : "center",
         alignContent:'center'
     },
+    themeButton:{
+        width : 200,
+        borderRadius : 15,
+        height : 40,
+        marginTop : 45,
+        flexDirection:"row",
+        justifyContent : "center",
+        alignContent:'center'
+    },
+    text: {
+        fontSize: 25,
+        margin: 10,
+      },
     
     wordText:{
         fontSize: 30,

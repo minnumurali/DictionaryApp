@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,StatusBar } from 'react-native';
 import Home from './Screens/Home'; 
 import Result from './Screens/Result';
 import { NavigationContainer } from '@react-navigation/native';
+ import ThemeProvide from './Context/ThemeProvider';
 
 
 
@@ -13,10 +14,10 @@ const Stack : any = createNativeStackNavigator()
 export default function App() {
   return (
     <>
-    <StatusBar style="auto" />
+    
 
    
-
+<ThemeProvide>
  <NavigationContainer>
     <Stack.Navigator initialRouteName="Home">
        <Stack.Screen
@@ -32,7 +33,7 @@ export default function App() {
      </Stack.Navigator>
 </NavigationContainer> 
 
-
+</ThemeProvide>
 </>
   );
 }
