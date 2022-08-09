@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity,FlatList, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity,FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
@@ -60,8 +60,7 @@ const Dictionary = () => {
   <Text style={styles.partText}>part of speech :{wordDetails[0]?.meanings[0]?.partOfSpeech}</Text>
   <Text style={styles.partText}>Definition: {wordDetails[0]?.meanings[0]?.definitions[0]?.definition}</Text>
   <Text style={styles.egText}>Example: {wordDetails[0]?.meanings[0]?.definitions[0]?.example}</Text>
-  <Image source={require('C:\Users\Minnu Murali\Dictionary\assests\image\audiobutton.png')} /> 
-  {/* <Image source={require('./audiobutton.png')}/> */}
+  
 </View>  
      
       {/* <FlatList
@@ -91,13 +90,7 @@ const Dictionary = () => {
         {wordDetails.word}
       </Text>
       <View style={styles.btnContainer}>
-        {/* <TouchableOpacity
-          onPress={() => setShowMore(!showMore)}
-          style={styles.button}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.text}>show more</Text>
-        </TouchableOpacity> */}
+        
         <TouchableOpacity
           onPress={playAudio}
           style={styles.button}
@@ -231,3 +224,4 @@ defText :{
   color : "#1b1c1b"
 }
 });
+
